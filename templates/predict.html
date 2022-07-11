@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>FT Churn Predictor</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="/https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body style= "background-image: url('/static/images/bg6.png');">
+  <div class="hero_area" >
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container" style=" background-image: url('static/images/bg6.png');" >
+        <div class="top_contact-container">
+          <div class="tel_container">
+            <a href="">
+              <img src="/static/images/telephone-symbol-button.png" alt=""> Call : 0701951531
+            </a>
+          </div>
+          <div class="social-container">
+            <a href="">
+              <img src="static/images/fb.png" alt="" class="s-1">
+            </a>
+            <a href="">
+              <img src="/static/images/twitter.png" alt="" class="s-2">
+            </a>
+            <a href="">
+              <img src="/static/images/instagram.png" alt="" class="s-3">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="/static/images/mylogo.png" alt="">
+            <span>
+              Churn Predictor
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex  flex-column flex-lg-row align-items-center w-100 justify-content-between">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'predict' %}">Make Prediction</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'churnRate' %}"> Churn Rate(%) </a>
+               </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Causes' %}"> Causes of Churn</a>
+                </li>
+               
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Measures' %}">How to Prevent</a>
+                </li>
+              </ul>
+              <!-- <form class="form-inline ">
+                <input type="search" placeholder="Search">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form> -->
+              <!-- <div class="login_btn-contanier ml-0 ml-lg-5">
+                <a href="">
+                  <img src="images/user.png" alt="">
+                  <span>
+                    Login
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+        </nav>
+      </div>
+    </header>
+
+
+
+  <!-- discount section
+  <div class="layout_padding-top">
+    <section class="discount_section ">
+      <div class="container-fluid ">
+        <div class="row ">
+          <div class="col-lg-3 col-md-5 offset-md-2">
+            <div class="detail-box">
+              <h2>
+                You get <br>
+                any medicine <br>
+                on
+                <span>
+                  10% discount
+                </span>
+
+              </h2>
+              <p>
+                It is a long established fact that a reader will be distracted by
+              </p>
+              <div>
+                <a href="">
+                  Buy Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-5">
+            <div class="img-box">
+              <img src="images/medicines.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div> -->
+
+
+ <!-- about section -->
+ <section class="about_section layout_padding">
+  <div class="container" style=" background-image: url('static/images/bg6.png');">
+    <div class="custom_heading-container ">
+      <h2 style="color: #ffff;">
+        Enter customer details 
+      </h2>
+    </div>
+            <div class="datalist">
+              <form class="form" method="POST" action="{% url 'result' %}">
+                {% csrf_token %}
+                    <div class="input">
+                      <span class="lbl">Gender</span>
+                      <input class="inpt" name="gender" type="number" placeholder="Enter 1=Male, 0=Female" max="1", min="0" autofocus, required>
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Senior Citizen</span>
+                        <input class="inpt" name="seniorCitizen" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                      <span class="lbl">Partner</span>
+                      <input class="inpt" name="partner" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Tenure</span>
+                        <input class="inpt" name="tenure" type="number" placeholder="Enter 1=Yes, 0=No" required max="100", min="0">
+                    </div>
+
+                    <div class="input">
+                      <span class="lbl">Multiple Lines</span>
+                      <input class="inpt" name="mlines" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Tech Support</span>
+                        <input class="inpt" name="techSupport" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                      <span class="lbl">Paper Billing</span>
+                      <input class="inpt" name="pbill" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Monthly Charge</span>
+                        <input class="inpt" name="mcharge" type="number" placeholder="Enter Charges per month" required >
+                    </div>
+
+                    <div class="input">
+                      <span class="lbl">Total Charges</span>
+                      <input class="inpt" name="tcharges" type="number" placeholder="Enter all charges" required >
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Contract (Month-Month)</span>
+                        <input class="inpt"name="m-m" type="number" placeholder="Enter 1=Yes, 0=No" required max="1", min="0">
+                    </div>
+                    <div class="input">
+                      <span class="lbl">Contract (One Year)</span>
+                      <input class="inpt" name="oyr" type="number" placeholder="Enter 1=Yes, 0=No"  required max="1", min="0">
+                    </div>
+
+                    <div class="input">
+                        <span class="lbl">Contract (Two Years)</span>
+                        <input class="inpt" name="tyrs" type="number" placeholder="Enter 1=Yes, 0=No"  required max="1", min="0">
+                    </div>
+
+                   
+
+                </div>
+                <div class="input-btn">
+                  <input class="btn" type="submit" value="Predict ">
+            </div>
+              </form>
+            </div>
+            
+            
+  <style>
+    .input-btn{
+      justify-content: start;
+      padding: 5px;
+      width: 50%;
+      margin-top: 30px;
+      
+    }
+    .btn:hover{
+      color: #ffff;
+      background-color: #08c04e;
+    }
+
+    .btn{
+      color: #ffff;
+      width: 100%;
+      height: 45px;
+      justify-content: start;
+      /* border: 2px solid #FFFF; */
+      background-color: #0349bf;
+      padding: 5px;
+      outline: none;
+      margin: 30px;
+      box-sizing: border-box;
+      transition: .3s;
+    }
+
+    .inpt{
+      width: 100%;
+      justify-content: start;
+      border: 2px solid #aaaa;
+      border-radius: 4px;
+      margin: 8px 0;
+      
+      padding: 5px;
+      background-color:rgba(255, 255, 255, 0.867) ;
+      font-weight: 200;
+      outline: none;
+      color: rgb(0, 0, 0);
+      padding: 5px;
+      box-sizing: border-box;
+      transition: .3s;
+    }
+
+    .inpt:focus{
+      border-color: dodgerblue;
+      box-shadow: 0 0 5px 0 dodgerblue;
+    }
+
+    .about_section {
+      background-image: url('static/images/leak-bucket.png');
+    /* background-color: #f9f9f9; */
+    text-align: center;
+      
+  }
+
+
+    .lbl{
+      font-weight: 500;
+      text-align: left;
+      font-size: 18px;
+      color:rgb(255, 255, 255);
+    }
+    .input{
+      justify-content: start;
+      padding: 5px;
+      width: 30%;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .mydiv{
+     height: 400px; 
+     background-color: blue;
+     width: 100px;
+    }
+    .datalist{
+      height: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap; 
+    }
+
+    @media  screen and (max-width:1200px) {
+      .input{
+        width:40%;
+      }
+      
+    }
+    @media  screen and (max-width:600px) {
+      .input{
+        width:90%;
+      }
+      
+    }
+
+  h2{
+
+    margin-bottom: 50px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+  
+
+ .about_section .container {
+    
+      height: 500px;
+      width: 100%;
+    
+    }
+.form{
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  display:flex;
+  height: auto;
+  
+}
+.img-box{
+  height: 200px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  display:flexbox;
+}
+
+  </style>
+
+  
+  <!-- footer section -->
+
+  <script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="static/js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+  </script>
+ 
+ 
+</body>
+
+</html>
