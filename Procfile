@@ -1,1 +1,1 @@
-web: gunicorn fts.wsgi --log-file-
+web: web: gunicorn app.app
